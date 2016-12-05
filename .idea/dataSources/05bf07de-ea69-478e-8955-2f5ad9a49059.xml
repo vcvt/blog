@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - blog@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="blog">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="db_blog"/>
+    <schema id="3" name="filems"/>
+    <schema id="4" name="information_schema"/>
+    <schema id="5" name="library"/>
+    <schema id="6" name="mysql"/>
+    <schema id="7" name="shop"/>
+    <schema id="8" name="test"/>
+    <table id="9" parent="1" name="blogger">
+      <comment>博主信息表</comment>
+    </table>
+    <table id="10" parent="1" name="blogtype">
+      <comment>博客类型</comment>
+    </table>
+    <table id="11" parent="1" name="link">
+      <comment>链接表</comment>
+    </table>
+    <column id="12" parent="9" name="id">
+      <comment>博主ID</comment>
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="13" parent="9" name="username">
+      <comment>博主姓名</comment>
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="14" parent="9" name="password">
+      <comment>博主密码</comment>
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="15" parent="9" name="profile">
+      <comment>博主信息</comment>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="16" parent="9" name="nickname">
+      <comment>昵称</comment>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="17" parent="9" name="sign">
+      <comment>签名</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="18" parent="9" name="imagename">
+      <comment>博主头像路径</comment>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <key id="19" parent="9" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="20" parent="10" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="21" parent="10" name="typeName">
+      <comment>博客名称</comment>
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="22" parent="10" name="orderNum">
+      <comment>博客排序</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <key id="23" parent="10" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="24" parent="11" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="25" parent="11" name="linkname">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="26" parent="11" name="linkurl">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="27" parent="11" name="linkorder">
+      <comment>用于查询时排序</comment>
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <key id="28" parent="11" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
