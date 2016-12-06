@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogDao">
+    <resultMap id="BlogResult" type="Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="summary" column="summary"/>
+        <result property="releaseDate" column="releaseDate"/>
+        <result property="clickHit" column="clickHit"/>
+        <result property="replyHit" column="replyHit"/>
+        <result property="content" column="content"/>
+        <result property="keyword" column="keyword"/>
+
+        <association property="blogType" column="type_id"
+                     select="com.blog.dao.BlogTypeDao.getBlogTypeData"/>
+    </resultMap>
+
+    <select id="getBlogData" resultMap="BlogResult">
+        SELECT DATE_FORMAT(releaseDate,'%y年%m月') AS releaseDateStr,
+                COUNT(*) AS blogCount
+        FROM blog
+        GROUP BY DATE_FORMAT(releaseDate,'%y年%m月')
+        ORDER BY releaseDate DESC
+    </select>
+
+    <select id="listBlog" parameterType="Map" resultMap="BlogResult">
+        SELECT * FROM blog
+        <where>
+            <if test="title!=null and title!=''">
+                AND title like #{title}
+            </if>
+            <if test="typeId!=null and typeId!=''">
+                AND type_id=#{typeId}
+            </if>
+            <if test="releaseDateStr!=null and releaseDateStr!=''">
+                and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
+            </if>
+        </where>
+        ORDER BY releaseDate DESC
+        <if test="start!=null and pageSize!=null">
+            limit #{start},#{pageSize}
+        </if>
+    </select>
+</mapper>

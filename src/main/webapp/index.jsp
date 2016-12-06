@@ -27,9 +27,12 @@
             <div class="blog"><strong>某某的博客</strong></div>
         </div>
         <div class="col-md-8">
-            <iframe style="float:right" width="420" scrolling="no" height="60" frameborder="0"
+            <%--<iframe style="float:right" width="420" scrolling="no" height="60" frameborder="0"
                     allowtransparency="true"
-                    src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>
+                    src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>--%>
+            <iframe style="float: right" width="200" scrolling="no" height="20" frameborder="0"
+                    allowtransparency="true"
+                    src="http://i.tianqi.com/index.php?c=code&id=10&color=%230070C0&icon=1"></iframe>
         </div>
     </div>
 
@@ -94,7 +97,7 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <c:forEach items="${blogList }" var="blog">
+                        <c:forEach items="${blogTimeList }" var="blog">
                             <li><span><a href="#">${blog.releaseDateStr }（${blog.blogCount }）</a></span></li>
                         </c:forEach>
                     </ul>
@@ -125,72 +128,21 @@
                 </div>
                 <div class="datas">
                     <ul>
-
-                        <li style="margin-bottom: 30px">
+                        <c:forEach items="${blogList }" var="blog">
+                            <li style="margin-bottom: 30px">
 						  	<span class="title">
 						  		<img alt="文章类型" src="${pageContext.request.contextPath}/static/userImages/yuan.jpg">
-						  		<a href="#">这是一篇测试博客</a>
+						  		<a href="#">${blog.title}</a>
 						  	</span>
-                            <span class="summary">摘要: 这是用来测试的静态数据，为了多搞一点数据，于是我开始喋喋不休的说一些废话，包括我很帅之类的，虽然我一直强调自己要低调，但不知为何，自己的容颜非得和内心背道而驰....</span>
-                            <span class="img">
-
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		&nbsp;&nbsp;
-
+                                <span class="summary">${blog.summary}</span>
+                                <span class="info">
+						  		<font color="#999">${blog.releaseDate}</font> &nbsp;&nbsp;
+						  		<font color="#33a5ba"><a href="#">阅读</a><font color="#999">(${blog.clickHit})</font>&nbsp;&nbsp;</font>
+						  		<font color="#33a5ba"><a href="#">评论</a><font color="#999">(${blog.replyHit})</font>&nbsp;&nbsp;</font>
 						  	</span>
-                            <span class="info">
-						  		<font color="#999">2016-07-03 10:39</font> &nbsp;&nbsp;
-						  		<font color="#33a5ba"><a href="#">阅读</a><font color="#999">(404)</font>&nbsp;&nbsp;</font>
-						  		<font color="#33a5ba"><a href="#">评论</a><font color="#999">(8)</font>&nbsp;&nbsp;</font>
-						  	</span>
-                        </li>
-                        <hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:10px;" />
-
-                        <li style="margin-bottom: 30px">
-						  	<span class="title">
-						  		<img alt="文章类型" src="${pageContext.request.contextPath}/static/userImages/yuan.jpg">
-						  		<a href="#">这是一篇测试博客</a>
-						  	</span>
-                            <span class="summary">摘要: 这是用来测试的静态数据，为了多搞一点数据，于是我开始喋喋不休的说一些废话，包括我很帅之类的，虽然我一直强调自己要低调，但不知为何，自己的容颜非得和内心背道而驰....</span>
-                            <span class="img">
-
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		&nbsp;&nbsp;
-
-						  	</span>
-                            <span class="info">
-						  		<font color="#999">2016-07-03 10:39</font> &nbsp;&nbsp;
-						  		<font color="#33a5ba"><a href="#">阅读</a><font color="#999">(404)</font>&nbsp;&nbsp;</font>
-						  		<font color="#33a5ba"><a href="#">评论</a><font color="#999">(8)</font>&nbsp;&nbsp;</font>
-						  	</span>
-                        </li>
-                        <hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:10px;" />
-
-                        <li style="margin-bottom: 30px">
-						  	<span class="title">
-						  		<img alt="文章类型" src="${pageContext.request.contextPath}/static/userImages/yuan.jpg">
-						  		<a href="#">这是一篇测试博客</a>
-						  	</span>
-                            <span class="summary">摘要: 这是用来测试的静态数据，为了多搞一点数据，于是我开始喋喋不休的说一些废话，包括我很帅之类的，虽然我一直强调自己要低调，但不知为何，自己的容颜非得和内心背道而驰....</span>
-                            <span class="img">
-
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
-							  		&nbsp;&nbsp;
-
-						  	</span>
-                            <span class="info">
-						  		<font color="#999">2016-07-03 10:39</font> &nbsp;&nbsp;
-						  		<font color="#33a5ba"><a href="#">阅读</a><font color="#999">(404)</font>&nbsp;&nbsp;</font>
-						  		<font color="#33a5ba"><a href="#">评论</a><font color="#999">(8)</font>&nbsp;&nbsp;</font>
-						  	</span>
-                        </li>
-                        <hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:10px;" />
+                            </li>
+                            <hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:10px;" />
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -202,7 +154,6 @@
         <div class="col-md-12" >
             <div class="footer" align="center" style="padding-top: 120px" >
                 <font>Copyright © 2012-2016 SSM个人博客系统 版权所有</font>
-
             </div>
         </div>
     </div>

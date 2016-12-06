@@ -1,6 +1,8 @@
 package com.blog.entity;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Administrator
@@ -14,12 +16,31 @@ public class Blog {
     private int clickHit;   //阅读量
     private int replyHit;   //评论量
     private String content; //内容
-    private String keyword; //关键字
+    private String contentNoTag; //不带标签的博客内容，用于Lucene索引中
+
+    public String getContentNoTag() {
+        return contentNoTag;
+    }
+
+    public void setContentNoTag(String contentNoTag) {
+        this.contentNoTag = contentNoTag;
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    private String keyword; //关键字,用空格分开
 
     private BlogType blogType;  //博客类型
     private int blogCount; //博客数量
     private String releaseDateStr; //发布日期字符串，只取年月，用来显示在页面
 
+    private List<String> imageList = new LinkedList<>();//博客里存的图片，主要用于展示缩略图
     public int getId() {
         return id;
     }

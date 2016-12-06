@@ -1,8 +1,10 @@
 package com.blog.listener;
 
+import com.blog.entity.Blog;
 import com.blog.entity.BlogType;
 import com.blog.entity.Blogger;
 import com.blog.entity.Link;
+import com.blog.service.BlogService;
 import com.blog.service.BlogTypeService;
 import com.blog.service.BloggerService;
 import com.blog.service.LinkService;
@@ -47,6 +49,10 @@ public class InitBloggerData implements ServletContextListener{
         BlogTypeService blogTypeService = (BlogTypeService) applicationContext.getBean("blogTypeService");
         List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
         application.setAttribute("blogTypeList",blogTypeList);
+
+        BlogService blogService = (BlogService)applicationContext.getBean("blogService");
+        List<Blog> blogTimeList = blogService.getBlogData();
+        application.setAttribute("blogTimeList",blogTimeList);
     }
 
     @Override
