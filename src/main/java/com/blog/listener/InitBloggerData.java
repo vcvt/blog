@@ -1,7 +1,9 @@
 package com.blog.listener;
 
+import com.blog.entity.BlogType;
 import com.blog.entity.Blogger;
 import com.blog.entity.Link;
+import com.blog.service.BlogTypeService;
 import com.blog.service.BloggerService;
 import com.blog.service.LinkService;
 import org.springframework.beans.BeansException;
@@ -41,6 +43,10 @@ public class InitBloggerData implements ServletContextListener{
         LinkService linkService = (LinkService)applicationContext.getBean("linkService");
         List<Link> linkList = linkService.getLinkData();
         application.setAttribute("linkList",linkList);
+
+        BlogTypeService blogTypeService = (BlogTypeService) applicationContext.getBean("blogTypeService");
+        List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
+        application.setAttribute("blogTypeList",blogTypeList);
     }
 
     @Override
