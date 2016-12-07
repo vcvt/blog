@@ -28,7 +28,7 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public int getTotal(Map<String, Object> map) {
+    public Integer getTotal(Map<String, Object> map) {
         return blogDao.getTotal(map);
     }
 

@@ -17,4 +17,40 @@
         GROUP BY t2.typeName
         ORDER BY t2.orderNum
     </select>
+
+    <select id="findById" parameterType="Integer" resultMap="BlogTypeResult">
+        SELECT * FROM blogtype WHERE id=#{id}
+    </select>
+
+    <select id="listBlogType" parameterType="Map" resultMap="BlogTypeResult">
+        SELECT * FROM blogtype
+        <if test="start!=null and pageSize!=null">
+            limit #{start},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTotal" parameterType="Map" resultType="Long">
+        SELECT COUNT(*) FROM blogtype
+    </select>
+
+    <insert id="addBlogType" parameterType="BlogType" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO blogtype VALUES(null,#{typeName},#{orderNum})
+    </insert>
+
+    <delete id="deleteBlogType" parameterType="Integer">
+        delete from blogtype where id=#{id}
+    </delete>
+
+    <update id="updateBlogType" parameterType="BlogType">
+        update blogtype
+        <set>
+            <if test="typeName!=null and typeName!=''">
+                typeName=#{typeName},
+            </if>
+            <if test="orderNum!=null and orderNum!=''">
+                orderNum=#{orderNum},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

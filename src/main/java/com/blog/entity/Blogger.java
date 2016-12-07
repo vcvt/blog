@@ -5,7 +5,7 @@ package com.blog.entity;
  */
 public class Blogger {
 
-    private int id;
+    private Integer id;
     private String username;    //博主姓名
     private String password;    //密码
     private String profile;     //信息
@@ -13,11 +13,11 @@ public class Blogger {
     private String sign;        //签名
     private String imagename;   //头像路径
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

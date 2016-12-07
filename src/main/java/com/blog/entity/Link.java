@@ -5,16 +5,16 @@ package com.blog.entity;
  */
 public class Link {
 
-    private int id;
+    private Integer id;
     private String linkname;
     private String linkurl;
-    private int linkorder;
+    private Integer linkorder;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,11 +34,11 @@ public class Link {
         this.linkurl = linkurl;
     }
 
-    public int getLinkorder() {
+    public Integer getLinkorder() {
         return linkorder;
     }
 
-    public void setLinkorder(int linkorder) {
+    public void setLinkorder(Integer linkorder) {
         this.linkorder = linkorder;
     }
 }

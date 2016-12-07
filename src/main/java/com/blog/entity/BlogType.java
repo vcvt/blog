@@ -5,17 +5,17 @@ package com.blog.entity;
  */
 public class BlogType {
 
-    private int id;
+    private Integer id;
     private String typeName;
     private String orderNum;
 
-    private int blogCount;  //统计不同类型的博客数量
+    private Integer blogCount;  //统计不同类型的博客数量
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -35,11 +35,11 @@ public class BlogType {
         this.orderNum = orderNum;
     }
 
-    public int getBlogCount() {
+    public Integer getBlogCount() {
         return blogCount;
     }
 
-    public void setBlogCount(int blogCount) {
+    public void setBlogCount(Integer blogCount) {
         this.blogCount = blogCount;
     }
 }

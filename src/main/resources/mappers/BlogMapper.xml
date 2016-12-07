@@ -14,7 +14,7 @@
         <result property="keyword" column="keyword"/>
 
         <association property="blogType" column="type_id"
-                     select="com.blog.dao.BlogTypeDao.getBlogTypeData"/>
+                     select="com.blog.dao.BlogTypeDao.findById"/>
     </resultMap>
 
     <select id="getBlogData" resultMap="BlogResult">
@@ -42,5 +42,72 @@
         <if test="start!=null and pageSize!=null">
             limit #{start},#{pageSize}
         </if>
+    </select>
+
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        SELECT COUNT(*) FROM blog
+        <where>
+            <if test="title!=null and title!=''">
+                and title like #{title}
+            </if>
+            <if test="typeId!=null and typeId!=''">
+                and type_id=#{typeId}
+            </if>
+            <if test="releaseDateStr!=null and releaseDateStr!=''">
+                and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" parameterType="Integer" resultMap="BlogResult">
+        SELECT * FROM blog WHERE id=#{id}
+    </select>
+
+    <update id="update" parameterType="Blog">
+        update blog
+        <set>
+            <if test="title!=null and title!=''">
+                title=#{title},
+            </if>
+            <if test="summary!=null and summary!=''">
+                summary=#{summary},
+            </if>
+            <if test="content!=null and content!=''">
+                content=#{content},
+            </if>
+            <if test="blogType.id!=null">
+                type_id=#{blogType.id},
+            </if>
+            <if test="clickHit!=null">
+                clickHit=#{clickHit},
+            </if>
+            <if test="replyHit!=null">
+                replyHit=#{replyHit},
+            </if>
+            <if test="keyWord!=null and keyWord!=''">
+                keyWord=#{keyWord},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getPrevBlog" parameterType="Integer" resultMap="BlogResult">
+        SELECT * FROM blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
+        SELECT * FROM blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1
+    </select>
+
+    <insert id="addBlog" parameterType="Blog" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO blog VALUES(null,#{title},#{summary},now(),0,0,#{content},#{keyWord},#{blogType.id})
+    </insert>
+
+    <delete id="deleteBlog" parameterType="Integer">
+        delete from blog where id=#{id}
+    </delete>
+
+    <select id="getBlogByTypeId" parameterType="Integer" resultType="Integer">
+        select count(*) from blog where type_id=#{typeId}
     </select>
 </mapper>

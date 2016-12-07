@@ -54,13 +54,13 @@ public class PageUtil {
     public static String getPrevAndNextPageCode(Blog prev, Blog next, String projectContent) {
         StringBuffer pageCode = new StringBuffer();
         //整型不能为空但Integer可以为空,int默认为0
-        if(prev == null || prev.getId() == 0) {
+        if(prev == null || prev.getId() == null) {
             pageCode.append("<p>上一篇：无</P>");
         } else {
             pageCode.append("<p>上一篇：<a href='" + projectContent + "/blog/articles/" + prev.getId() + ".html'>" + prev.getTitle() + "</a></p>");
         }
 
-        if(next == null || next.getId() == 0) {
+        if(next == null || next.getId() == null) {
             pageCode.append("<p>下一篇：无</P>");
         } else {
             pageCode.append("<p>上一篇：<a href='" + projectContent + "/blog/articles/" + next.getId() + ".html'>" + next.getTitle() + "</a></p>");

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/blog.css"/>
     <script src="${pageContext.request.contextPath}/static/bootstrap/js/jquery-1.11.2.min.js"/>
     <script src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.min.js"/>
+
     <title>${title}</title>
     <script type="text/javascript">
         function changeClass(obj) {

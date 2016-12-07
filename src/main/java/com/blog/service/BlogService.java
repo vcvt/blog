@@ -15,7 +15,7 @@ public interface BlogService {
     List<Blog> listBlog(Map<String, Object> map);
 
     // 获取总记录数
-    int getTotal(Map<String, Object> map);
+    Integer getTotal(Map<String, Object> map);
 
     // 根据id获取博客
     Blog findById(Integer id);

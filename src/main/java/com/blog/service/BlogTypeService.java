@@ -11,16 +11,16 @@ import java.util.Map;
 public interface BlogTypeService {
     List<BlogType> getBlogTypeData();
 
-    BlogType findById(int id);
+    BlogType findById(Integer id);
 
     // 分页查询博客类别信息
     List<BlogType> listBlogType(Map<String,Object> map);
 
-    int getTotal(Map<String,Object> map);
+    Integer getTotal(Map<String,Object> map);
 
-    int addBlogType(BlogType blogType);
+    Integer addBlogType(BlogType blogType);
 
-    int updateBlogType(BlogType blogType);
+    Integer updateBlogType(BlogType blogType);
 
-    int deleteBlogType(int id);
+    Integer deleteBlogType(Integer id);
 }

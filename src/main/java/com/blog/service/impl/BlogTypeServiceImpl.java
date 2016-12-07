@@ -23,7 +23,7 @@ public class BlogTypeServiceImpl implements BlogTypeService {
     }
 
     @Override
-    public BlogType findById(int id) {
+    public BlogType findById(Integer id) {
         return blogTypeDao.findById(id);
     }
 
@@ -33,22 +33,22 @@ public class BlogTypeServiceImpl implements BlogTypeService {
     }
 
     @Override
-    public int getTotal(Map<String, Object> map) {
+    public Integer getTotal(Map<String, Object> map) {
         return blogTypeDao.getTotal(map);
     }
 
     @Override
-    public int addBlogType(BlogType blogType) {
+    public Integer addBlogType(BlogType blogType) {
         return blogTypeDao.addBlogType(blogType);
     }
 
     @Override
-    public int updateBlogType(BlogType blogType) {
+    public Integer updateBlogType(BlogType blogType) {
         return blogTypeDao.updateBlogType(blogType);
     }
 
     @Override
-    public int deleteBlogType(int id) {
+    public Integer deleteBlogType(Integer id) {
         return blogTypeDao.deleteBlogType(id);
     }
 }
