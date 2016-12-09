@@ -13,4 +13,38 @@
     <select id="getLinkData" resultMap="LinkResult">
         SELECT * FROM link ORDER BY linkorder
     </select>
+
+    <select id="listLinkData" resultMap="LinkResult" parameterType="Map">
+        SELECT * FROM link ORDER BY linkorder
+        <if test="start!=null and pageSize!=null">
+            LIMIT #{start},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        SELECT COUNT(*) FROM link
+    </select>
+
+    <insert id="addLink" parameterType="Link" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO link VALUES (NULL ,#{linkname},#{linkurl},#{linkorder})
+    </insert>
+
+    <delete id="deleteLink" parameterType="Integer">
+        DELETE FROM link WHERE id=#{id}
+    </delete>
+
+    <update id="updateLink" parameterType="Link">
+        UPDATE link
+        <set>
+            <if test="linkname!=null and linkname!=''">
+                linkname=#{linkname},
+            </if>
+            <if test="linkurl!=null and linkurl!=''">
+                linkurl=#{linkurl},
+            </if>
+            <if test="linkorder!=null">
+                linkorder=#{linkorder}
+            </if>
+        </set>
+    </update>
 </mapper>

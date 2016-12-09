@@ -11,4 +11,51 @@
         <result property="state" column="state"/>
         <association property="blog" column="blog_id" select="com.blog.dao.BlogDao.findById"/>
     </resultMap>
+
+    <select id="getCommentData" parameterType="Map" resultMap="CommentResult">
+        SELECT * FROM comment
+        <where>
+            <if test="blogId!=null">
+                AND blog_id=#{blogId}
+            </if>
+            <if test="state!=null">
+                AND state=#{state}
+            </if>
+        </where>
+        ORDER BY commentDate DESC
+        <if test="start!=null and pageSize!=null">
+            limit #{start},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        SELECT COUNT(*) FROM comment
+        <where>
+            <if test="state!=null">
+                AND state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addComment" parameterType="Comment">
+        INSERT INTO comment VALUES (NULL,#{userIp},#{content},now(),0,#{blog.id})
+    </insert>
+
+    <update id="update" parameterType="Comment">
+        UPDATE comment
+        <set>
+            <if test="state!=null">
+                state=#{state}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteComment" parameterType="Integer">
+        DELETE FROM comment WHERE id=#{id}
+    </delete>
+
+    <delete id="deleteCommentByBlogId" parameterType="Integer">
+        DELETE FROM comment WHERE blog_id=#{id}
+    </delete>
 </mapper>

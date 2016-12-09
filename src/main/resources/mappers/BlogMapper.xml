@@ -85,7 +85,7 @@
                 replyHit=#{replyHit},
             </if>
             <if test="keyWord!=null and keyWord!=''">
-                keyWord=#{keyWord},
+                keyword=#{keyword},
             </if>
         </set>
         where id=#{id}
@@ -100,7 +100,7 @@
     </select>
 
     <insert id="addBlog" parameterType="Blog" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO blog VALUES(null,#{title},#{summary},now(),0,0,#{content},#{keyWord},#{blogType.id})
+        INSERT INTO blog VALUES(null,#{title},#{summary},now(),0,0,#{content},#{keyword},#{blogType.id})
     </insert>
 
     <delete id="deleteBlog" parameterType="Integer">
