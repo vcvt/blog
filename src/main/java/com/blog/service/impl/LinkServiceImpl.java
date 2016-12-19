@@ -25,26 +25,26 @@ public class LinkServiceImpl implements LinkService{
 
     @Override
     public List<Link> listLinkData(Map<String, Object> map) {
-        return null;
+        return linkDao.getLinkData();
     }
 
     @Override
     public Integer getTotal(Map<String, Object> map) {
-        return null;
+        return linkDao.getTotal(map);
     }
 
     @Override
     public Integer addLink(Link link) {
-        return null;
+        return linkDao.addLink(link);
     }
 
     @Override
     public Integer updateLink(Link link) {
-        return null;
+        return linkDao.updateLink(link);
     }
 
     @Override
     public Integer deleteLink(Integer id) {
-        return null;
+        return linkDao.deleteLink(id);
     }
 }

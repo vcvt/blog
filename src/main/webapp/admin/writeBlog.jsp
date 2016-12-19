@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -7,41 +8,44 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<title>写博客页面</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-      href="${pageContext.request.contextPath}/static/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-      href="${pageContext.request.contextPath}/static/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/demo.css">
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/easyui/jquery.min.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+<head>
+    <title>写博客页面</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/static/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/demo/demo.css">
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/easyui/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/easyui/locale/easyui-lang-zh_CN.js"></script>
 
-<script type="text/javascript" charset="utf-8"
-        src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8"
-        src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/ueditor.all.min.js">
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/ueditor.all.min.js">
 
-</script>
-<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-<script type="text/javascript" charset="utf-8"
-        src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/lang/zh-cn/zh-cn.js"></script>
-
+    </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8"
+            src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/css">
+        body{
+            margin: 10px;
+            font-family: "宋体",serif;
+        }
+    </script>
 </head>
 
-<body style="margin: 10px; font-family: microsoft yahei">
-
+<body>
 <div id="p" class="easyui-panel" title="编写博客" style="padding: 10px;">
 
     <table cellspacing="20px">
         <tr>
             <td width="80px">博客标题：</td>
-            <td><input type="text" id="title" name="title" style="width:400px" /></td>
+            <td><input type="text" id="title" name="title" style="width:400px"/></td>
         </tr>
         <tr>
             <td>所属类别：</td>
@@ -72,9 +76,6 @@
         </tr>
     </table>
 </div>
-
-
-
 
 <!-- 实例化编辑器 -->
 <script type="text/javascript">

@@ -29,7 +29,7 @@
         </if>
     </select>
 
-    <select id="getTotal" parameterType="Map" resultType="Long">
+    <select id="getTotal" parameterType="Map" resultType="Integer">
         SELECT COUNT(*) FROM blogtype
     </select>
 

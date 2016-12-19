@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -9,12 +10,11 @@
 <html>
 <head>
     <title>修改博客页面</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/static/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/static/easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/demo.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/demo/demo.css">
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/easyui/jquery.min.js"></script>
     <script type="text/javascript"
