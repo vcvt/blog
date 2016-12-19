@@ -10,7 +10,7 @@ public class Blogger {
     private String password;    //密码
     private String profile;     //信息
     private String nickname;    //昵称
-    private String sign;        //签名
+    private String signature;        //签名
     private String imagename;   //头像路径
 
     public Integer getId() {
@@ -54,11 +54,11 @@ public class Blogger {
     }
 
     public String getSign() {
-        return sign;
+        return signature;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setSign(String signature) {
+        this.signature = signature;
     }
 
     public String getImagename() {

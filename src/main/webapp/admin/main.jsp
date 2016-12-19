@@ -9,8 +9,8 @@
 <html>
 <head>
     <title>个人博客系统后台管理页面</title>
-    <link rel="stylesheet" type="text/css" href="../static/easyui/themes/default/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/easyui/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../static/easyui/themes/icon.css">
     <script type="text/javascript" src="../static/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="../static/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../static/easyui/locale/easyui-lang-zh_CN.js"></script>
@@ -103,6 +103,7 @@
             background-color: blue;
             color: #fff;
             text-decoration: none;
+            text-align: left;
         }
         #menu ul li a:hover {
             background-color: #008792;
@@ -130,7 +131,7 @@
         </div>
     </div>
 </div>
-<div region="west" style="width: 200px" title="导航菜单" split="true">
+<div region="west" style="width: 150px" title="导航菜单" split="true">
     <div id="menu" class="easyui-accordion" data-options="fit:true,border:false">
         <div title="常用操作" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
             <ul>

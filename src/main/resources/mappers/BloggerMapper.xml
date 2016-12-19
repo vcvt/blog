@@ -10,7 +10,7 @@
         <result property="password" column="password"/>
         <result property="profile" column="profile"/>
         <result property="nickname" column="nickname"/>
-        <result property="sign" column="sign"/>
+        <result property="signature" column="signature"/>
         <result property="imagename" column="imagename"/>
     </resultMap>
 
@@ -31,8 +31,8 @@
             <if test="password!=null and password!=''">
                 password=#{password}
             </if>
-            <if test="sign!=null and sign!=''">
-                sign=#{sign}
+            <if test="signature!=null and signature!=''">
+                signature=#{signature}
             </if>
             <if test="profile!=null and profile!=''">
                 profile=#{profile}
