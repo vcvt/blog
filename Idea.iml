@@ -85,6 +85,10 @@
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:6.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:6.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers-common:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-highlighter:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-join:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-memory:6.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers-smartcn:6.1.0" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />

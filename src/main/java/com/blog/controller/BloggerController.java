@@ -9,11 +9,13 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 博主Controller层，前台部分，不需要认证
  * Created by Administrator
  */
 @Controller
@@ -40,5 +42,16 @@ public class BloggerController {
             request.setAttribute("errorInfo","用户名或密码错误");
             return "login";
         }
+    }
+
+    @RequestMapping("/aboutme")
+    public ModelAndView aboutMe(){
+        ModelAndView modelAndView = new ModelAndView();
+        Blogger blogger = bloggerService.getBloggerData();
+        modelAndView.addObject("blogger",blogger);
+        modelAndView.addObject("commonPage","/foreground/blogger/bloggerInfo.jsp");
+        modelAndView.addObject("title","关于博主--某某的博客");
+        modelAndView.setViewName("mainTemp");
+        return modelAndView;
     }
 }

@@ -12,4 +12,7 @@ public interface BloggerDao {
 
     //获取博主信息
     Blogger getBloggerData();
+
+    // 更新博主个人信息
+    public Integer updateBlogger(Blogger blogger);
 }

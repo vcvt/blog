@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator
@@ -20,5 +21,30 @@ public class LinkServiceImpl implements LinkService{
     @Override
     public List<Link> getLinkData() {
         return linkDao.getLinkData();
+    }
+
+    @Override
+    public List<Link> listLinkData(Map<String, Object> map) {
+        return null;
+    }
+
+    @Override
+    public Integer getTotal(Map<String, Object> map) {
+        return null;
+    }
+
+    @Override
+    public Integer addLink(Link link) {
+        return null;
+    }
+
+    @Override
+    public Integer updateLink(Link link) {
+        return null;
+    }
+
+    @Override
+    public Integer deleteLink(Integer id) {
+        return null;
     }
 }
