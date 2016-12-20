@@ -144,7 +144,7 @@
                 <tr>
                     <td>友情链接排序</td>
                     <td>
-                        <input type="text" id="order" name="order" class="easyui-numberbox" required="true"
+                        <input type="text" id="linkorder" name="linkorder" class="easyui-numberbox" required="true"
                                style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
                     </td>
                 </tr>
