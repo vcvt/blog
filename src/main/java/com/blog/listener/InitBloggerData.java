@@ -29,7 +29,6 @@ public class InitBloggerData implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         applicationContext = (ApplicationContext)sce.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-        System.out.println(applicationContext);
         //先获取servlet上下文,即application域
         ServletContext application = sce.getServletContext();
 

@@ -16,11 +16,12 @@
     <script type="text/javascript" src="../static/easyui/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
         function openTab(text,url,iconCls){
-            if($("#tabs").tabs("exists",text)){
-                $("#tabs").tabs("select",text);
+            var tabs = $('#tabs');
+            if(tabs.tabs("exists",text)){
+               tabs.tabs("select",text);
             }else{
-                var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${pageContext.request.contextPath}/admin/"+url+"'></iframe>";
-                $("#tabs").tabs("add",{
+                var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='../admin/"+url+"'></iframe>";
+                tabs.tabs("add",{
                     title:text,
                     iconCls:iconCls,
                     closable:true,
@@ -34,8 +35,8 @@
         }
 
         function modifyPassword() {
-            $("#fm").form("submit",{
-                url: "${pageContext.request.contextPath}/admin/blogger/modifyPassword.do",
+            $('#fm').form('submit',{
+                url: "../admin/blogger/modifyPassword.do",
                 onSubmit: function() {
                     var newPassword = $("#password").val();
                     var newPassword2 = $("#password2").val();
@@ -44,29 +45,27 @@
                     }
                     if(newPassword != newPassword2) {
                         $.messager.alert("系统提示", "两次密码必须填写一致");
-                        return false
+                        return false;
                     }
                     return true;
                 }, //进行验证，通过才让提交
                 success: function(result) {
+                    alert(result+"结果");
                     var result = eval("(" + result + ")"); //将json格式的result转换成js对象
                     if(result.success) {
                         $.messager.alert("系统提示", "密码修改成功，下一次登陆生效");
                         closePasswordModifyDialog();
                     } else {
                         $.messager.alert("系统提示", "密码修改失败");
-                        return;
                     }
                 }
             });
         }
-
         function closePasswordModifyDialog() {
             $("#password").val(""); //保存成功后将内容置空
             $("#password2").val("");
             $("#dlg").dialog("close"); //关闭对话框
         }
-
         function refreshSystemCache() {
             $.post("${pageContext.request.contextPath}/admin/system/refreshSystemCache.do",{},function(result){
                 if(result.success){
@@ -87,7 +86,7 @@
     </script>
     <style type="text/css">
         body {
-            font-family: microsoft yahei;
+            font-family: '宋体',serif;
         }
         #menu ul{
             list-style: none;
@@ -112,7 +111,7 @@
 </head>
 
 <body class="easyui-layout">
-<div region="north" style="height: 78px; background-color: #E0ECFF">
+<div data-options="region:'north'" style="height: 78px; background-color: #E0ECFF">
     <table style="padding: 5px" width="100%">
         <tr>
             <td width="50%">
@@ -124,14 +123,14 @@
         </tr>
     </table>
 </div>
-<div region="center">
+<div data-options="region:'center'">
     <div class="easyui-tabs" fit="true" border="false" id="tabs">
         <div title="首页" data-options="iconCls:'icon-home'">
             <div align="center" style="padding-top: 100px"><font color="red" size="10">欢迎使用</font></div>
         </div>
     </div>
 </div>
-<div region="west" style="width: 150px" title="导航菜单" split="true">
+<div data-options="region:'west'" style="width: 150px" title="导航菜单" split="true">
     <div id="menu" class="easyui-accordion" data-options="fit:true,border:false">
         <div title="常用操作" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
             <ul>
@@ -177,36 +176,32 @@
 <div id="dlg" class="easyui-dialog" style="width:400px; height:200px; padding:10px 20px"
      closed="true" buttons="#dlg-buttons">
     <form id="fm" method="post">
-        <table cellspacing="8px">
-            <tr>
-                <td>用户名</td>
-                <td>
-                    <input type="text" id="username" name="username" value="${blogger.username }" readonly="readonly">
-                </td>
-            </tr>
-            <tr>
-                <td>新密码</td>
-                <td>
-                    <input type="password" id="password" name="password" class="easyui-validatebox"
-                           required="true" style="width:200px">
-                </td>
-            </tr>
-            <tr>
-                <td>确认新密码</td>
-                <td>
-                    <input type="password" id="password2" name="password2" class="easyui-validatebox"
-                           required="true" style="width:200px">
-                </td>
-            </tr>
-        </table>
+        <div style="width:100%;text-align:center">
+            <div>
+                <label>
+                    用户名:&nbsp;&nbsp;
+                    <input class="easyui-validatebox" type="text" id="name" name="name" data-options="required:true"
+                           value="${blogger.username}" readonly="readonly"/>
+                </label>
+            </div><br>
+            <div>
+                <label>
+                    新密码:&nbsp;&nbsp;
+                    <input class="easyui-validatebox" type="text" id="password" name="password" data-options="required:true" />
+                </label>
+            </div><br>
+            <div>
+                <label>
+                    确认新密码:
+                    <input class="easyui-validatebox" type="text" id="password2" name="password2" data-options="required:true" />
+                </label>
+            </div><br>
+            <div>
+                <a href="javascript:modifyPassword()" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" >保存</a>&nbsp;&nbsp;
+                <a href="javascript:closePasswordModifyDialog()" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">关闭</a>
+            </div>
+        </div>
     </form>
-</div>
-
-<div id="dlg-buttons">
-    <div>
-        <a href="javascript:modifyPassword()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
-        <a href="javascript:closePasswordModifyDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
-    </div>
 </div>
 </body>
 </html>

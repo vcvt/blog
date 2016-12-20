@@ -72,9 +72,6 @@
     </table>
 </div>
 
-
-
-
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     var ue = UE.getEditor('editor');
@@ -88,7 +85,7 @@
                     onsuccess: function(result) { //根据id查询Blog，返回一个json格式的blog对象
                         result = eval("(" + result.responseText + ")");
                         $("#title").val(result.title);
-                        $("#keyWord").val(result.keyWord);
+                        $("#keyword").val(result.keyword);
                         $("#blogTypeId").combobox("setValue", result.blogType.id);
                         UE.getEditor('editor').setContent(result.content);
                     }
@@ -101,7 +98,7 @@
         var blogTypeId = $("#blogTypeId").combobox("getValue");
         var content = UE.getEditor('editor').getContent();
         var summary = UE.getEditor('editor').getContentTxt().substr(0, 155);
-        var keyWord = $("#keyWord").val();
+        var keyWord = $("#keyword").val();
         var contentNoTag = UE.getEditor('editor').getContentTxt();
 
         if (title == null || title == '') {
@@ -118,7 +115,7 @@
                         'blogType.id' : blogTypeId,
                         'content' : content,
                         'summary' : summary,
-                        'keyWord' : keyWord,
+                        'keyWord' : keyword,
                         'contentNoTag' : contentNoTag
                     }, function(result) {
                         if (result.success) {

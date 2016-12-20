@@ -17,7 +17,7 @@
         <img src="${pageContext.request.contextPath}/static/userImages/${blogger.imagename}">
     </div>
     <%-- <div class="visitNum">访问量：6666</div>  --%>
-    <div class="userSign">『<strong><span style="color: #EE6A50">${blogger.sign }</span></strong>』</div>
+    <div class="userSign">『<strong><span style="color: #EE6A50">${blogger.signature }</span></strong>』</div>
 </div>
 
 <div class="data_list">

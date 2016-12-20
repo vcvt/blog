@@ -22,7 +22,6 @@
 
     <script type="text/javascript">
         function submitData() {
-
             $("#fm").form("submit",{
                 url: "../admin/blogger/save.do",
                 onSubmit: function() {
@@ -91,25 +90,5 @@
             </table>
         </form>
     </div>
-
-   <%-- &lt;%&ndash; 实例化编辑器 &ndash;%&gt;
-    <script type="text/javascript">
-        var ue = UE.getEditor('profile');
-        ue.addListener("ready", function(){
-            //通过UE自己封装的ajax请求数据
-            UE.ajax.request("../admin/blogger/findBlogger.do",
-                    {
-                        method: "post",
-                        async: false,
-                        data: {},
-                        onsuccess: function(result) { //
-                            result = eval("(" + result.responseText + ")");
-                            $("#nickname").val(result.nickname);
-                            $("#sign").val(result.sign);
-                            UE.getEditor('profile').setContent(result.profile);
-                        }
-                    });
-        });
-    </script>--%>
 </body>
 </html>

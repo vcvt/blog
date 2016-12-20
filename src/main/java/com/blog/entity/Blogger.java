@@ -53,11 +53,11 @@ public class Blogger {
         this.nickname = nickname;
     }
 
-    public String getSign() {
+    public String getSignature() {
         return signature;
     }
 
-    public void setSign(String signature) {
+    public void setSignature(String signature) {
         this.signature = signature;
     }
 

@@ -50,7 +50,7 @@
       <comment>昵称</comment>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="19" parent="9" name="sign">
+    <column id="19" parent="9" name="signature">
       <comment>签名</comment>
       <data-type>varchar(100)|0</data-type>
     </column>

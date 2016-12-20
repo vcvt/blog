@@ -2,6 +2,7 @@ package com.blog.controller.admin;
 
 import com.blog.entity.Blogger;
 import com.blog.service.BloggerService;
+import com.blog.util.CryptographyUtil;
 import com.blog.util.DateUtil;
 import com.blog.util.ResponseUtil;
 import net.sf.json.JSONObject;
@@ -60,6 +61,23 @@ public class BloggerAdminController {
         return null;
     }
 
+    //修改博主密码
+    @RequestMapping("/modifyPassword")
+    public String modifyPassword(
+            @RequestParam String password,
+            HttpServletResponse response) throws Exception{
+        Blogger blogger = new Blogger();
+        blogger.setPassword(CryptographyUtil.md5(password,"javacode"));
+        int resultTotal = bloggerService.updateBlogger(blogger);
+        JSONObject result = new JSONObject();
+        if(resultTotal > 0){
+            result.put("success",true);
+        }else {
+            result.put("success",false);
+        }
+        ResponseUtil.write(response,result);
+        return null;
+    }
     //退出
     @RequestMapping("/logout")
     public String logout() throws Exception{
