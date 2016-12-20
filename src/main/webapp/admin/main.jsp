@@ -49,8 +49,7 @@
                     }
                     return true;
                 }, //进行验证，通过才让提交
-                success: function(result) {
-                    alert(result+"结果");
+                success: function(result) { //result为{"success","true/false"}
                     var result = eval("(" + result + ")"); //将json格式的result转换成js对象
                     if(result.success) {
                         $.messager.alert("系统提示", "密码修改成功，下一次登陆生效");

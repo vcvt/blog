@@ -10,6 +10,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -63,20 +64,21 @@ public class BloggerAdminController {
 
     //修改博主密码
     @RequestMapping("/modifyPassword")
-    public String modifyPassword(
+    public @ResponseBody Object modifyPassword(
             @RequestParam String password,
             HttpServletResponse response) throws Exception{
         Blogger blogger = new Blogger();
-        blogger.setPassword(CryptographyUtil.md5(password,"javacode"));
+        blogger.setPassword(CryptographyUtil.md5(password,"vcvt"));
         int resultTotal = bloggerService.updateBlogger(blogger);
+        System.out.println("resultTotal is :" + resultTotal);
         JSONObject result = new JSONObject();
         if(resultTotal > 0){
             result.put("success",true);
         }else {
             result.put("success",false);
         }
-        ResponseUtil.write(response,result);
-        return null;
+        //ResponseUtil.write(response,result);
+        return result;
     }
     //退出
     @RequestMapping("/logout")
