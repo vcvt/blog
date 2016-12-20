@@ -19,6 +19,7 @@
         var url;
         function openLinkAddDialog() {
             $("#dlg").dialog("open").dialog("setTitle", "添加友情链接信息");
+            $("#dlg").dialog("move", { top: $(document).scrollTop() + ($(window).height() - 200) * 0.5 });
             url = "../admin/link/save.do";
         }
 
@@ -53,11 +54,10 @@
                 }
             });
         }
-
         function closeLinkDialog() {
             $("linkname").val(""); //保存成功后将内容置空
             $("linkurl").val("");
-            $("order").val("");
+            $("linkorder").val("");
             $("#dlg").dialog("close"); //关闭对话框
         }
 
@@ -87,10 +87,6 @@
                 }
             });
         }
-
-
-
-
         function reload() {
             $("#dg").datagrid("reload");
         }
@@ -108,7 +104,7 @@
            url="../admin/link/listLink.do" toolbar="#tb">
         <thead>
         <tr>
-            <th data-options="field:'cb' checkbox:'true'" align="center"></th>
+            <th field="cb" checkbox="true" align="center"></th>
             <th data-options="field:'id'" width="20" align="center">编号</th>
             <th data-options="field:'linkname'" width="100" align="center">友情链接名称</th>
             <th data-options="field:'linkurl'" width="200" align="center">友情链接地址</th>
@@ -124,9 +120,36 @@
             <a href="javascript:reload()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
         </div>
     </div>
-    <div id="dlg" class="easyui-dialog" style="width:500px; height:180px; padding:10px 20px"
+    <div id="dlg" class="easyui-dialog" style="align:center;width:400px; height:200px; padding:10px 20px"
          closed="true" buttons="#dlg-buttons">
         <form id="fm" method="post">
+            <div style="width:100%;text-align:center">
+                <div>
+                    <label>
+                        友情链接名称:&nbsp;&nbsp;
+                        <input class="easyui-validatebox" type="text" id="linkname" name="linkname" data-options="required:true"/>
+                    </label>
+                </div><br>
+                <div>
+                    <label>
+                        友情链接地址:&nbsp;&nbsp;
+                        <input class="easyui-validatebox" type="text" id="linkurl" name="linkurl"
+                               data-options="required:true,validtype:'url'" />
+                    </label>
+                </div><br>
+                <div>
+                    <label>
+                        友情链接排序:
+                        <input class="easyui-numberbox" type="text" id="linkorder" name="linkorder" data-options="required:true" />
+                    </label>
+                </div><br>
+                <div>
+                    <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
+                    <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
+                </div>
+            </div>
+        </form>
+       <%-- <form id="fm" method="post">
             <table cellspacing="8px">
                 <tr>
                     <td>友情链接名称</td>
@@ -149,14 +172,7 @@
                     </td>
                 </tr>
             </table>
-        </form>
-    </div>
-
-    <div id="dlg-buttons">
-        <div>
-            <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
-            <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
-        </div>
+        </form>--%>
     </div>
 </body>
 </html>
