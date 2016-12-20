@@ -10,7 +10,7 @@
 <head>
     <title>博客系统</title>
     <script
-            src="${pageContext.request.contextPath}/static/bootstrap/js/jquery-1.11.2.min.js"></script>
+            src="static/bootstrap/js/jquery-1.11.2.min.js"></script>
     <STYLE>
         body {
             background: #ebebeb;

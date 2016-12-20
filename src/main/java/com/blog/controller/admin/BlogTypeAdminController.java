@@ -4,12 +4,12 @@ import com.blog.entity.BlogType;
 import com.blog.entity.PageBean;
 import com.blog.service.BlogService;
 import com.blog.service.BlogTypeService;
-import com.blog.util.ResponseUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +31,7 @@ public class BlogTypeAdminController {
 
     // 分页查询博客类别
     @RequestMapping("/listBlogType")
-    public String listBlogType(
+    public @ResponseBody Object listBlogType(
             @RequestParam(value = "page", required = false) String page,
             @RequestParam(value = "rows", required = false) String rows,
             HttpServletResponse response) throws Exception {
@@ -49,13 +49,12 @@ public class BlogTypeAdminController {
         JSONArray jsonArray = JSONArray.fromObject(blogTypeList);
         result.put("rows", jsonArray);
         result.put("total", total);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     // 添加和更新博客类别
     @RequestMapping("/save")
-    public String save(BlogType blogType, HttpServletResponse response)
+    public @ResponseBody Object save(BlogType blogType, HttpServletResponse response)
             throws Exception {
 
         int resultTotal = 0; // 接收返回结果记录数
@@ -71,13 +70,12 @@ public class BlogTypeAdminController {
         } else {
             result.put("success", false);
         }
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     // 博客类别信息删除
     @RequestMapping("/delete")
-    public String deleteBlog(
+    public @ResponseBody Object deleteBlog(
             @RequestParam(value = "ids", required = false) String ids,
             HttpServletResponse response) throws Exception {
 
@@ -92,8 +90,7 @@ public class BlogTypeAdminController {
             }
         }
         result.put("success", true);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 }
 

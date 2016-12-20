@@ -9,7 +9,7 @@
 
 <div class="col-md-4">
     <div class="blog">
-        <a href="${pageContext.request.contextPath}/index.html" style="text-decoration: none">
+        <a href="../../index.html" style="text-decoration: none">
             <h1><strong>某某的博客</strong></h1>
         </a>
     </div>

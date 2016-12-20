@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="data_list">
     <div class="data_list_title">
-        <img src="${pageContext.request.contextPath}/static/images/list_icon.png"/>&nbsp;最新博客
+        <img src="../../static/images/list_icon.png"/>&nbsp;最新博客
     </div>
     <div class="datas">
         <ul>

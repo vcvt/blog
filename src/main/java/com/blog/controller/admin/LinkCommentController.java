@@ -3,12 +3,12 @@ package com.blog.controller.admin;
 import com.blog.entity.Link;
 import com.blog.entity.PageBean;
 import com.blog.service.LinkService;
-import com.blog.util.ResponseUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ public class LinkCommentController {
     private LinkService linkService;
     //分页查询友情链接
     @RequestMapping("/listLink")
-    public String listLink(
+    public @ResponseBody Object listLink(
             //required默认值为true
             @RequestParam(value = "page",required = false) String page,
             @RequestParam(value = "rows",required = false) String rows,
@@ -43,13 +43,12 @@ public class LinkCommentController {
         JSONArray jsonArray = JSONArray.fromObject(linkList);
         result.put("rows", jsonArray);
         result.put("total", total);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     // 添加和更新友情链接
     @RequestMapping("/save")
-    public String save(Link link, HttpServletResponse response)
+    public @ResponseBody Object save(Link link, HttpServletResponse response)
             throws Exception {
 
         int resultTotal = 0; // 接收返回结果记录数
@@ -65,13 +64,12 @@ public class LinkCommentController {
         } else {
             result.put("success", false);
         }
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     // 友情链接信息删除
     @RequestMapping("/delete")
-    public String deleteLink(
+    public  @ResponseBody Object deleteLink(
             @RequestParam(value = "ids", required = false) String ids,
             HttpServletResponse response) throws Exception {
 
@@ -82,7 +80,6 @@ public class LinkCommentController {
             linkService.deleteLink(id);
         }
         result.put("success", true);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 }

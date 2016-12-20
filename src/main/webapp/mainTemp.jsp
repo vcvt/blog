@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/blog.css"/>
-    <script src="${pageContext.request.contextPath}/static/bootstrap/js/jquery-1.11.2.min.js"/>
-    <script src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.min.js"/>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="static/css/blog.css">
+    <script src="static/bootstrap/js/jquery-1.11.2.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
 
     <title>${title}</title>
     <script type="text/javascript">

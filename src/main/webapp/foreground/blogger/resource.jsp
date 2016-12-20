@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 div class="data_list">
 <div class="data_list_title">
-    <img src="${pageContext.request.contextPath}/static/images/about_icon.png"/>&nbsp;资源小站
+    <img src="../../static/images/about_icon.png"/>&nbsp;资源小站
 </div>
 <div class="datas">
     <ul>

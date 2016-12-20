@@ -139,40 +139,16 @@
                 </div><br>
                 <div>
                     <label>
-                        友情链接排序:
+                        友情链接排序:&nbsp;&nbsp;
                         <input class="easyui-numberbox" type="text" id="linkorder" name="linkorder" data-options="required:true" />
                     </label>
                 </div><br>
                 <div>
-                    <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
+                    <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>&nbsp;&nbsp;
                     <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
                 </div>
             </div>
         </form>
-       <%-- <form id="fm" method="post">
-            <table cellspacing="8px">
-                <tr>
-                    <td>友情链接名称</td>
-                    <td>
-                        <input type="text" id="linkname" name="linkname" class="easyui-validatebox" required="true">
-                    </td>
-                </tr>
-                <tr>
-                    <td>友情链接地址</td>
-                    <td>
-                        <input type="text" id="linkurl" name="linkurl" class="easyui-validatebox"
-                               validtype="url" required="true" style="width:250px">
-                    </td>
-                </tr>
-                <tr>
-                    <td>友情链接排序</td>
-                    <td>
-                        <input type="text" id="linkorder" name="linkorder" class="easyui-numberbox" required="true"
-                               style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
-                    </td>
-                </tr>
-            </table>
-        </form>--%>
     </div>
 </body>
 </html>

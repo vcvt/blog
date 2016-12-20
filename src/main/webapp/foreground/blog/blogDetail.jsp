@@ -10,9 +10,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js"></script>
+        src="../../static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js"></script>
 <link rel="stylesheet"
-      href="${pageContext.request.contextPath}/static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCoreDefault.css">
+      href="../../static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCoreDefault.css">
 <script type="text/javascript">
     SyntaxHighlighter.all(); //ueditor代码高亮
 
@@ -45,7 +45,6 @@
                     },"json");
         }
     }
-
 </script>
 
 <div class="data_list">

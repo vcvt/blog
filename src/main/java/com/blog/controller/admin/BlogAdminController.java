@@ -6,7 +6,6 @@ import com.blog.lucene.BlogIndex;
 import com.blog.service.BlogService;
 import com.blog.service.CommentService;
 import com.blog.util.DateJsonValueProcessor;
-import com.blog.util.ResponseUtil;
 import com.blog.util.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -14,6 +13,7 @@ import net.sf.json.JsonConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +37,7 @@ public class BlogAdminController {
 
     //添加和更新博客
     @RequestMapping("/save")
-    public String save(Blog blog, HttpServletResponse response) throws Exception {
+    public @ResponseBody Object save(Blog blog, HttpServletResponse response) throws Exception {
         int resultTotal = 0;    //接收返回结果记录数
         if(blog.getId() == null){
             //说明第一次插入
@@ -55,13 +55,12 @@ public class BlogAdminController {
         }else {
             result.put("success",false);
         }
-        ResponseUtil.write(response,result);
-        return null;
+        return result;
     }
 
     //后台分页查询博客信息
     @RequestMapping("/listBlog")
-    public String listBlog(
+    public @ResponseBody Object listBlog(
             @RequestParam(value = "page",required = false) String page,
             @RequestParam(value = "rows",required = false) String rows,
             Blog s_blog,
@@ -80,13 +79,12 @@ public class BlogAdminController {
         JSONArray jsonArray = JSONArray.fromObject(blogList,jsonConfig);
         result.put("rows",jsonArray);
         result.put("total",total);
-        ResponseUtil.write(response,result);
-        return null;
+        return result;
     }
 
     //博客信息删除
     @RequestMapping("/delete")
-    public String deleteBlog(
+    public @ResponseBody Object deleteBlog(
             @RequestParam(value = "ids",required = false) String ids,
             HttpServletResponse response) throws Exception{
 
@@ -99,19 +97,17 @@ public class BlogAdminController {
         }
         JSONObject result = new JSONObject();
         result.put("success", true);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     //通过Id获取博客实体
     @RequestMapping("/findById")
-    public String findById(
+    public @ResponseBody Object findById(
             @RequestParam(value = "id",required = false) String id,
             HttpServletResponse response) throws Exception {
 
         Blog blog = blogService.findById(Integer.parseInt(id));
         JSONObject result = JSONObject.fromObject(blog);
-        ResponseUtil.write(response,result);
-        return null;
+        return result;
     }
 }

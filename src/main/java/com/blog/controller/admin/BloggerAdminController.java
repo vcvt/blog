@@ -4,7 +4,6 @@ import com.blog.entity.Blogger;
 import com.blog.service.BloggerService;
 import com.blog.util.CryptographyUtil;
 import com.blog.util.DateUtil;
-import com.blog.util.ResponseUtil;
 import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
@@ -30,16 +29,15 @@ public class BloggerAdminController {
 
     //查询博主信息
     @RequestMapping("/findBlogger")
-    public String findBlogger(HttpServletResponse response) throws Exception {
+    public @ResponseBody Object findBlogger(HttpServletResponse response) throws Exception {
         Blogger blogger = bloggerService.getBloggerData();
         JSONObject jsonObject = JSONObject.fromObject(blogger);
-        ResponseUtil.write(response, jsonObject);
-        return null;
+        return jsonObject;
     }
 
     //修改博主信息
     @RequestMapping("/save")
-    public String save(
+    public @ResponseBody Object save(
             @RequestParam(value = "imageFile")MultipartFile imageFile,
             Blogger blogger,
             HttpServletRequest request,
@@ -58,8 +56,7 @@ public class BloggerAdminController {
         }else {
             result.put("success",false);
         }
-        ResponseUtil.write(response,result);
-        return null;
+        return result;
     }
 
     //修改博主密码
@@ -77,7 +74,6 @@ public class BloggerAdminController {
         }else {
             result.put("success",false);
         }
-        //ResponseUtil.write(response,result);
         return result;
     }
     //退出

@@ -10,11 +10,11 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img src="${pageContext.request.contextPath}/static/images/user_icon.png">
+        <img src="../../static/images/user_icon.png">
         博主信息
     </div>
     <div class="user_image">
-        <img src="${pageContext.request.contextPath}/static/userImages/${blogger.imagename}">
+        <img src="../../static/userImages/${blogger.imagename}">
     </div>
     <%-- <div class="visitNum">访问量：6666</div>  --%>
     <div class="userSign">『<strong><span style="color: #EE6A50">${blogger.signature }</span></strong>』</div>
@@ -22,14 +22,14 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img src="${pageContext.request.contextPath}/static/images/byType_icon.png">
+        <img src="../../static/images/byType_icon.png">
         文章分类
     </div>
     <div class="datas">
         <ul>
             <c:forEach items="${blogTypeList}" var="blogType">
                 <li>
-                    <span><a href="${pageContext.request.contextPath}/index.html?typeId=${blogType.id}">${blogType.typeName}(${blogType.blogCount})</a> </span>
+                    <span><a href="../../index.html?typeId=${blogType.id}">${blogType.typeName}(${blogType.blogCount})</a> </span>
                 </li>
             </c:forEach>
         </ul>
@@ -38,14 +38,14 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img src="${pageContext.request.contextPath}/static/images/byDate_icon.png">
+        <img src="../../static/images/byDate_icon.png">
         文章存档
     </div>
     <div class="datas">
         <ul>
             <c:forEach items="${blogTimeList}" var="blog">
                 <li>
-                    <span><a href="${pageContext.request.contextPath}/index.html?releaseDateStr=${blog.releaseDateStr}">${blog.releaseDateStr}(${blog.blogCount})</a> </span>
+                    <span><a href="../../index.html?releaseDateStr=${blog.releaseDateStr}">${blog.releaseDateStr}(${blog.blogCount})</a> </span>
                 </li>
             </c:forEach>
         </ul>
@@ -54,7 +54,7 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img src="${pageContext.request.contextPath}/static/images/link_icon.png" />
+        <img src="../../static/images/link_icon.png" />
         友情链接
     </div>
     <div class="datas">
@@ -68,7 +68,7 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img src="${pageContext.request.contextPath}/static/images/comment_icon.png" />
+        <img src="../../static/images/comment_icon.png" />
         分享到
     </div>
     <div class="datas">

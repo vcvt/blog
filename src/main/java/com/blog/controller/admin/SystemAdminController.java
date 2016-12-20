@@ -8,11 +8,10 @@ import com.blog.service.BlogService;
 import com.blog.service.BlogTypeService;
 import com.blog.service.BloggerService;
 import com.blog.service.LinkService;
-import com.blog.util.ResponseUtil;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -38,7 +37,7 @@ public class SystemAdminController {
 
     //刷新系统缓存
     @RequestMapping("/refreshSystemCache")
-    public String refreshSystemCache(
+    public @ResponseBody Object refreshSystemCache(
             HttpServletRequest request,
             HttpServletResponse response)throws Exception{
         //ServletContext application = RequestContextUtils.getWebApplicationContext(request).getServletContext();
@@ -63,8 +62,7 @@ public class SystemAdminController {
 
         JSONObject result = new JSONObject();
         result.put("success", true);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
 }

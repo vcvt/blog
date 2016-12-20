@@ -4,13 +4,13 @@ import com.blog.entity.Comment;
 import com.blog.entity.PageBean;
 import com.blog.service.CommentService;
 import com.blog.util.DateJsonValueProcessor;
-import com.blog.util.ResponseUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +30,7 @@ public class CommentAdminController {
 
     // 后台分页查询评论信息
     @RequestMapping("/listComment")
-    public String listBlog(
+    public @ResponseBody Object listBlog(
             @RequestParam(value = "page", required = false) String page,
             @RequestParam(value = "rows", required = false) String rows,
             @RequestParam(value = "state", required = false) String state,
@@ -52,13 +52,12 @@ public class CommentAdminController {
         JSONArray jsonArray = JSONArray.fromObject(commentList, jsonConfig);
         result.put("rows", jsonArray);
         result.put("total", total);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     // 评论审核
     @RequestMapping("/review")
-    public String review(
+    public @ResponseBody Object review(
             @RequestParam(value = "ids", required = false) String ids,
             @RequestParam(value = "state", required = false) Integer state,
             HttpServletResponse response) throws Exception {
@@ -72,13 +71,12 @@ public class CommentAdminController {
             commentService.update(comment);
         }
         result.put("success", true);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 
     // 评论信息删除
     @RequestMapping("/deleteComment")
-    public String deleteBlog(
+    public @ResponseBody Object deleteBlog(
             @RequestParam(value = "ids", required = false) String ids,
             HttpServletResponse response) throws Exception {
 
@@ -88,7 +86,6 @@ public class CommentAdminController {
         }
         JSONObject result = new JSONObject();
         result.put("success", true);
-        ResponseUtil.write(response, result);
-        return null;
+        return result;
     }
 }
