@@ -95,63 +95,68 @@
             $("#dg").datagrid("reload");
         }
     </script>
-
+    <script type="text/css">
+        body{
+            margin: 1px;
+            font-family: "宋体", serif;
+        }
+    </script>
 </head>
 
-<body style="margin: 1px; font-family: microsoft yahei">
-<table id="dg" title="友情链接管理" class="easyui-datagrid" fitColumns="true" pagination="true"
-       url="../admin/link/listLink.do" toolbar="#tb">
-    <thead>
-    <tr>
-        <th field="cb" checkbox="true" align="center"></th>
-        <th field="id" width="20" align="center">编号</th>
-        <th field="linkname" width="100" align="center">友情链接名称</th>
-        <th field="linkurl" width="200" align="center">友情链接地址</th>
-        <th field="order" width="50" align="center">友情链接序号</th>
-    </tr>
-    </thead>
-</table>
-<div id="tb">
-    <div>
-        <a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
-        <a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-        <a href="javascript:openLinkModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
-        <a href="javascript:reload()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+<body>
+    <table id="dg" title="友情链接管理" class="easyui-datagrid" fitColumns="true" pagination="true"
+           url="../admin/link/listLink.do" toolbar="#tb">
+        <thead>
+        <tr>
+            <th data-options="field:'cb' checkbox:'true'" align="center"></th>
+            <th data-options="field:'id'" width="20" align="center">编号</th>
+            <th data-options="field:'linkname'" width="100" align="center">友情链接名称</th>
+            <th data-options="field:'linkurl'" width="200" align="center">友情链接地址</th>
+            <th data-options="field:'linkorder'" width="50" align="center">友情链接序号</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="tb">
+        <div>
+            <a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+            <a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+            <a href="javascript:openLinkModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+            <a href="javascript:reload()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+        </div>
     </div>
-</div>
-<div id="dlg" class="easyui-dialog" style="width:500px; height:180px; padding:10px 20px"
-     closed="true" buttons="#dlg-buttons">
-    <form id="fm" method="post">
-        <table cellspacing="8px">
-            <tr>
-                <td>友情链接名称</td>
-                <td>
-                    <input type="text" id="linkname" name="linkname" class="easyui-validatebox" required="true">
-                </td>
-            </tr>
-            <tr>
-                <td>友情链接地址</td>
-                <td>
-                    <input type="text" id="linkurl" name="linkurl" class="easyui-validatebox"
-                           validtype="url" required="true" style="width:250px">
-                </td>
-            </tr>
-            <tr>
-                <td>友情链接排序</td>
-                <td>
-                    <input type="text" id="order" name="order" class="easyui-numberbox" required="true"
-                           style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+    <div id="dlg" class="easyui-dialog" style="width:500px; height:180px; padding:10px 20px"
+         closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post">
+            <table cellspacing="8px">
+                <tr>
+                    <td>友情链接名称</td>
+                    <td>
+                        <input type="text" id="linkname" name="linkname" class="easyui-validatebox" required="true">
+                    </td>
+                </tr>
+                <tr>
+                    <td>友情链接地址</td>
+                    <td>
+                        <input type="text" id="linkurl" name="linkurl" class="easyui-validatebox"
+                               validtype="url" required="true" style="width:250px">
+                    </td>
+                </tr>
+                <tr>
+                    <td>友情链接排序</td>
+                    <td>
+                        <input type="text" id="order" name="order" class="easyui-numberbox" required="true"
+                               style="width:60px">&nbsp;(友情链接会根据序号从小到大排列)
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
-<div id="dlg-buttons">
-    <div>
-        <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
-        <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
+    <div id="dlg-buttons">
+        <div>
+            <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>
+            <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
+        </div>
     </div>
-</div>
 </body>
 </html>
