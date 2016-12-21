@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/19 0019
-  Time: 下午 1:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,51 +10,13 @@
 
     <script type="text/javascript">
         var url;
-        function openLinkAddDialog() {
+        
+        function addLink() {
             $("#dlg").dialog("open").dialog("setTitle", "添加友情链接信息");
-            $("#dlg").dialog("move", { top: $(document).scrollTop() + ($(window).height() - 200) * 0.5 });
+            $("#fm").form("clear");
             url = "../admin/link/save.do";
         }
-
-        function openLinkModifyDialog() {
-            var selectedRows = $("#dg").datagrid("getSelections");
-            if(selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一个要修改的友情链接");
-                return;
-            }
-            var row = selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle", "修改友情链接信息");
-            $("#fm").form("load", row);//会自动识别name属性，将row中对应的数据，填充到form表单对应的name属性中
-            url = "../admin/link/save.do?id=" + row.id;
-        }
-
-        function saveLink() {
-            $("#fm").form("submit",{
-                url: url,
-                onSubmit: function() {
-                    return $(this).form("validate");
-                }, //进行验证，通过才让提交
-                success: function(result) {
-                    var result = eval("(" + result + ")"); //将json格式的result转换成js对象
-                    if(result.success) {
-                        $.messager.alert("系统提示", "友情链接保存成功");
-                        closeLinkDialog();
-                        $("#dg").datagrid("reload"); //刷新一下
-                    } else {
-                        $.messager.alert("系统提示", "友情链接保存失败");
-                        return;
-                    }
-                }
-            });
-        }
-        function closeLinkDialog() {
-            $("linkname").val(""); //保存成功后将内容置空
-            $("linkurl").val("");
-            $("linkorder").val("");
-            $("#dlg").dialog("close"); //关闭对话框
-        }
-
-
+        
         function deleteLink() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if(selectedRows.length == 0) {
@@ -78,12 +33,41 @@
                     $.post("../admin/link/delete.do",
                             {ids: ids}, function(result){
                                 if(result.success) {
-                                    $.messager.alert("系统提示", "数据删除成功！");
                                     $("#dg").datagrid("reload");
                                 } else {
                                     $.messager.alert("系统提示", "数据删除失败！");
                                 }
                             }, "json");
+                }
+            });
+        }
+
+        function updateLink() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if(selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要修改的友情链接");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改友情链接信息");
+            $("#fm").form("load", row);//会自动识别name属性，将row中对应的数据，填充到form表单对应的name属性中
+            url = "../admin/link/save.do?id=" + row.id;
+        }
+
+        function saveLink() {
+            $("#fm").form("submit",{
+                url: url,   //上面定义了url
+                onSubmit: function() {
+                    return $(this).form("validate");
+                }, //进行验证，通过才让提交
+                success: function(result) {
+                    var result = eval("(" + result + ")"); //将json格式的result转换成js对象
+                    if(result.success) {
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload"); //刷新一下
+                    } else {
+                        $.messager.alert("系统提示", "友情链接保存失败");
+                    }
                 }
             });
         }
@@ -114,13 +98,13 @@
     </table>
     <div id="tb">
         <div>
-            <a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
-            <a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-            <a href="javascript:openLinkModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
-            <a href="javascript:reload()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLink()">添加</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteLink()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="updateLink()">修改</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="reload()">刷新</a>
         </div>
     </div>
-    <div id="dlg" class="easyui-dialog" style="align:center;width:400px; height:200px; padding:10px 20px"
+    <div id="dlg" class="easyui-dialog" style="width:400px; height:200px; top: 200px;padding:10px 20px"
          closed="true" buttons="#dlg-buttons">
         <form id="fm" method="post">
             <div style="width:100%;text-align:center">
@@ -144,8 +128,8 @@
                     </label>
                 </div><br>
                 <div>
-                    <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">保存</a>&nbsp;&nbsp;
-                    <a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="saveLink()">保存</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="javascript:$('#dlg').dialog('close')">关闭</a>
                 </div>
             </div>
         </form>

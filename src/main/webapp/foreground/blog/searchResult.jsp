@@ -1,16 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/7 0007
-  Time: 上午 10:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="data_list">
     <div class="data_list_title">
-        <img src="../../static/images/search_icon.png">
+        <img src="./static/images/search_icon.png">
         &nbsp;搜索&nbsp;<span color="red">${q }</span>&nbsp;的结果&nbsp;(共搜索到&nbsp;${resultTotal }&nbsp;条记录)
     </div>
     <div class="datas search">

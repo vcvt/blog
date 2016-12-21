@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/19 0019
-  Time: 下午 1:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,8 +18,6 @@
             $("#fm").form("submit",{
                 url: "../admin/blogger/save.do",
                 onSubmit: function() {
-                    var profile = UE.getEditor("profile").getContent();
-                    $("#pf").val(profile); //将UEditor编辑器中的内容放到隐藏域中提交到后台
                     return $(this).form("validate");
                 }, //进行验证，通过才让提交
                 success: function(result) {
@@ -35,59 +26,61 @@
                         $.messager.alert("系统提示", "博主信息更新成功");
                     } else {
                         $.messager.alert("系统提示", "博主信息更新失败");
-                        return;
                     }
                 }
             });
         }
     </script>
+    <style>
+        body{
+            margin: 10px;
+            font-family: '宋体', serif;
+        }
+    </style>
 </head>
 
-<body style="margin: 10px; font-family: microsoft yahei">
+<body>
     <div id="p" class="easyui-panel" title="修改个人信息" style="padding: 10px;">
         <form id="fm" method="post" enctype="multipart/form-data">
-            <table cellspacing="20px">
-                <tr>
-                    <td width="80px">用户名：</td>
-                    <td>
-                        <input type="hidden" id="id" name="id" value="${blogger.id }"/>
-                        <input type="text" id="username" name="username" style="width:200px" readonly="readonly" value="${blogger.username }"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>昵称：</td>
-                    <td>
-                        <input type="text" id="nickname" name="nickname" style="width:200px"
-                               class="easyui-validatebox" required="true" value="${blogger.nickname}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>个性签名：</td>
-                    <td>
-                        <input type="text" id="signature" name="signature" style="width:400px"
-                               class="easyui-validatebox" required="true" value="${blogger.signature}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>个人头像：</td>
-                    <td>
+            <div style="width:100%;text-align:left">
+                <div>
+                    <label>
+                        用户名&nbsp;&nbsp;:
+                        <input class="easyui-validatebox" type="text" id="username" name="username"
+                               value="${blogger.username}" readonly="readonly"/>
+                    </label>
+                </div><br>
+                <div>
+                    <label>
+                        昵称&nbsp;&nbsp;&nbsp;:
+                        <input class="easyui-validatebox" type="text" id="nickname" name="nickname" data-options="required:true"
+                               value="${blogger.nickname}"/>
+                    </label>
+                </div><br>
+                <div>
+                    <label>
+                        个性签名&nbsp;:
+                        <input class="easyui-validatebox" type="text" id="signature" name="signature" data-options="required:true"
+                               value="${blogger.signature}"/>
+                    </label>
+                </div><br>
+                <div>
+                    <label>
+                        个人头像&nbsp;:
                         <input type="file" id="imageFile" name="imageFile"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>个人简介：</td>
-                    <td>
+                    </label>
+                </div><br>
+                <div>
+                    <label>
+                        个人简介&nbsp;:
                         <textarea name="a" style="width:400px;height:80px;">${blogger.profile}</textarea>
- <%--                       <script id="profile" type="text/plain" style="width:80%; height:500px;"></script>
-                        <input type="hidden" id="pf" name="profile"> &lt;%&ndash; UEditor不能作为表单的一部分提交，所以用这种隐藏域的方式 &ndash;%&gt;--%>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><a href="javascript:submitData()" class="easyui-linkbutton"
-                           data-options="iconCls:'icon-submit'">提交</a></td>
-                </tr>
-            </table>
+                    </label>
+                </div><br>
+                <div>
+                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-submit'" onclick="submitData()">提交</a>
+                </div>
+            </div>
         </form>
     </div>
 </body>

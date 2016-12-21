@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/2 0002
-  Time: 下午 4:09
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,7 +18,8 @@
                     title:text,
                     iconCls:iconCls,
                     closable:true,
-                    content:content
+                    content:content,
+                    pill:true
                 });
             }
         }
@@ -66,7 +60,7 @@
             $("#dlg").dialog("close"); //关闭对话框
         }
         function refreshSystemCache() {
-            $.post("${pageContext.request.contextPath}/admin/system/refreshSystemCache.do",{},function(result){
+            $.post("../admin/system/refreshSystemCache.do",{},function(result){
                 if(result.success){
                     $.messager.alert("系统提示","已成功刷新系统缓存！");
                 }else{
@@ -78,7 +72,7 @@
         function logout() {
             $.messager.confirm("系统提示","您确定要退出系统吗？", function(r){
                 if(r) {
-                    window.location.href = "${pageContext.request.contextPath}/admin/blogger/logout.do";
+                    window.location.href = "../admin/blogger/logout.do";
                 }
             });
         }

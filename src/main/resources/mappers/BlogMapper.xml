@@ -84,7 +84,7 @@
             <if test="replyHit!=null">
                 replyHit=#{replyHit},
             </if>
-            <if test="keyWord!=null and keyWord!=''">
+            <if test="keyword!=null and keyword!=''">
                 keyword=#{keyword},
             </if>
         </set>

@@ -1,18 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/7 0007
-  Time: 上午 10:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<script type="text/javascript"
-        src="../../static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js"></script>
-<link rel="stylesheet"
-      href="../../static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCoreDefault.css">
+<script type="text/javascript" src="./static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js"></script>
+<link rel="stylesheet" href="./static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCoreDefault.css">
 <script type="text/javascript">
     SyntaxHighlighter.all(); //ueditor代码高亮
 
@@ -21,7 +12,7 @@
     }
 
     function loadimage(){
-        document.getElementById("randImage").src="${pageContext.request.contextPath}/image.jsp?"+Math.random();
+        document.getElementById("randImage").src="./image.jsp?"+Math.random();
     }
 
     function submitData() {
@@ -33,7 +24,7 @@
             alert("请填写验证码");
         } else {
             $.post(
-                    "${pageContext.request.contextPath}/comment/save.do",
+                    "./comment/save.do",
                     {"content":content,"imageCode":imageCode,"blog.id":"${blog.id}"},
                     function(result) {
                         if(result.success) {
@@ -49,8 +40,7 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img
-                src="${pageContext.request.contextPath}/static/images/blog_show_icon.png" />&nbsp;博客信息
+        <img src="./static/images/blog_show_icon.png" />&nbsp;博客信息
     </div>
     <div>
         <div class="blog_title">
@@ -67,7 +57,7 @@
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${keywords }" var="keyword">
-                            &nbsp;&nbsp;<a href="${pageContext.request.contextPath}/blog/search.html?q=${keyword }">${keyword }</a>&nbsp;
+                            &nbsp;&nbsp;<a href="./blog/search.html?q=${keyword }">${keyword }</a>&nbsp;
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
@@ -77,7 +67,7 @@
                 <fmt:formatDate value="${blog.releaseDate }" type="date"
                                 pattern="yyyy-MM-dd HH:mm" />
                 』&nbsp;&nbsp; 博客类别：<a
-                    href="${pageContext.request.contextPath}/index.html?typeId=${blog.blogType.id }">${blog.blogType.typeName }</a>&nbsp;&nbsp;
+                    href="./index.html?typeId=${blog.blogType.id }">${blog.blogType.typeName }</a>&nbsp;&nbsp;
                 阅读(${blog.clickHit })&nbsp;&nbsp; 评论(${blog.replyHit })
             </div>
         </div>
@@ -95,8 +85,7 @@
 
 <div class="data_list">
     <div class="data_list_title">
-        <img
-                src="${pageContext.request.contextPath}/static/images/comment_icon.png" />&nbsp;用户评论
+        <img src="./static/images/comment_icon.png" />&nbsp;用户评论
         <c:if test="${commentList.size()>10 }">
             <a href="javascript:showOtherComment()"
                style="float:right; padding-right:40px;">显示所有用户评论</a>
@@ -140,23 +129,24 @@
 <div class="data_list">
     <div class="data_list_title">
         <img
-                src="${pageContext.request.contextPath}/static/images/publish_comment_icon.png" />&nbsp;发表评论
+                src="./static/images/publish_comment_icon.png" />&nbsp;发表评论
     </div>
     <div class="publish_comment">
-        <div>
-			<textarea style="width: 100%" rows="3" id="content" name="content"
-                      placeholder="来说两句吧..."></textarea>
-        </div>
-        <div class="verCode">
-            验证码：<input type="text" value="" name="imageCode" id="imageCode"
-                       size="10" onkeydown="if(event.keyCode==13)form1.submit()" />&nbsp;
-            <img onclick="javascript:loadimage();" title="换一张试试" name="randImage"
-                 id="randImage" src="/image.jsp" width="60" height="20" border="1"
-                 align="absmiddle">
-        </div>
-        <div class="publishButton">
-            <button class="btn btn-primary" type="button" onclick="submitData()">发表评论</button>
-        </div>
+        <form>
+            <div>
+                <textarea style="width: 100%" rows="3" id="content" name="content"
+                          placeholder="来说两句吧..."></textarea>
+            </div>
+            <div class="verCode">
+                验证码：<input type="text" value="" name="imageCode" id="imageCode"
+                           size="10" onkeydown="if(event.keyCode==13)form1.submit()" />&nbsp;
+                <img onclick="javascript:loadimage();" title="换一张试试" name="randImage"
+                     id="randImage" src="/image.jsp" width="60" height="20" border="1"
+                     align="absmiddle">
+            </div>
+            <div class="publishButton">
+                <button class="btn btn-primary" type="button" onclick="submitData()">发表评论</button>
+            </div>
         </form>
     </div>
 

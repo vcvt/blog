@@ -25,22 +25,24 @@
     <update id="updateBlogger" parameterType="Blogger">
         UPDATE blogger
         <set>
+            /*千万不要忘了在最后加逗号*/
             <if test="nickname!=null and nickname!=''">
-                nickname=#{nickname}
+                nickname=#{nickname},
             </if>
             <if test="password!=null and password!=''">
-                password=#{password}
+                password=#{password},
             </if>
             <if test="signature!=null and signature!=''">
-                signature=#{signature}
+                signature=#{signature},
             </if>
             <if test="profile!=null and profile!=''">
-                profile=#{profile}
+                profile=#{profile},
             </if>
             <if test="imagename!=null and imagename!=''">
-                imagename=#{imagename}
+                imagename=#{imagename},
             </if>
         </set>
+        where id=1
     </update>
 </mapper>
 

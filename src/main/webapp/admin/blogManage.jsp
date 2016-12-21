@@ -1,23 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/19 0019
-  Time: 下午 1:42
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>博客管理页面</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/easyui/themes/icon.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../static/easyui/themes/icon.css">
+    <script type="text/javascript" src="../static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../static/easyui/locale/easyui-lang-zh_CN.js"></script>
 
     <script type="text/javascript">
         function formatTitle(val, row) {
-            return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>";
+            return "<a target='_blank' href='../blog/articles/"+row.id+".html'>"+val+"</a>";
         }
 
         function formatBlogType(val, row) {
@@ -43,7 +36,7 @@
             var ids = idsStr.join(","); //1,2,3,4
             $.messager.confirm("系统提示", "<font color=red>您确定要删除选中的"+selectedRows.length+"条数据么？</font>", function(r) {
                 if(r) {
-                    $.post("${pageContext.request.contextPath}/admin/blog/delete.do",
+                    $.post("../admin/blog/delete.do",
                             {ids: ids}, function(result){
                                 if(result.success) {
                                     $.messager.alert("系统提示", "数据删除成功！");
@@ -56,7 +49,7 @@
             });
         }
 
-        function openBlogModifyTab() {
+        function updateBlog() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if(selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一个要修改的博客");
@@ -70,30 +63,34 @@
             $("#dg").datagrid("reload");
         }
     </script>
-
+    <style>
+        body{
+            margin: 1px;
+            font-family: '宋体', serif;
+        }
+    </style>
 </head>
-
-<body style="margin: 1px; font-family: microsoft yahei">
-<table id="dg" title="博客管理" class="easyui-datagrid" fitColumns="true" pagination="true"
-       url="${pageContext.request.contextPath}/admin/blog/listBlog.do" toolbar="#tb">
-    <thead>
-    <tr>
-        <th field="cb" checkbox="true" align="center"></th>
-        <th field="id" width="20" align="center">编号</th>
-        <th field="title" width="200" formatter="formatTitle">标题</th>
-        <th field="releaseDate" width="100" align="center">发布日期</th>
-        <th field="blogType" width="100" align="center" formatter="formatBlogType">博客类型</th>
-    </tr>
-    </thead>
-</table>
-<div id="tb">
-    <div>
-        &nbsp;标题&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()">
-        <a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
-        <a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-        <a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
-        <a href="javascript:reload()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+<body>
+    <table id="dg" title="博客管理" class="easyui-datagrid" fitColumns="true" pagination="true"
+           url="../admin/blog/listBlog.do" toolbar="#tb">
+        <thead>
+        <tr>
+            <th field="cb" checkbox="true" align="center"></th>
+            <th data-options="field:'id'"  width="20" align="center">编号</th>
+            <th data-options="field:'title'" width="200" formatter="formatTitle">标题</th>
+            <th data-options="field:'releaseDate'" width="100" align="center">发布日期</th>
+            <th data-options="field:'blogType'" width="100" align="center" formatter="formatBlogType">博客类型</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="tb">
+        <div>
+            <label>标题&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"></label>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchBlog()">搜索</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteBlog()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="updateBlog()">修改</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="reload()">刷新</a>
+        </div>
     </div>
-</div>
 </body>
 </html>

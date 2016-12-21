@@ -1,13 +1,7 @@
 <%@ page import="javax.imageio.ImageIO" %>
 <%@ page import="java.awt.*" %>
 <%@ page import="java.util.Random" %>
-<%@ page import="java.awt.image.BufferedImage" %><%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/7 0007
-  Time: 上午 11:40
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.awt.image.BufferedImage" %>
 <%@ page contentType="image/jpeg" pageEncoding="utf-8" language="java" %>
 <%!Color getRandColor(int fc, int bc) {
     Random random = new Random();
