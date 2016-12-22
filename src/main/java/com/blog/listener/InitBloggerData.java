@@ -48,6 +48,7 @@ public class InitBloggerData implements ServletContextListener{
         BlogTypeService blogTypeService = (BlogTypeService) applicationContext.getBean("blogTypeService");
         List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
         application.setAttribute("blogTypeList",blogTypeList);
+        application.setAttribute("blogTypeListLength",blogTypeList.size());
 
         BlogService blogService = (BlogService)applicationContext.getBean("blogService");
         List<Blog> blogTimeList = blogService.getBlogData();

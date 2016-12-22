@@ -14,29 +14,6 @@
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="../static/ueditor1_4_3_3/lang/zh-cn/zh-cn.js"></script>
-
-    <script type="text/javascript">
-        $('#cc').combobox({
-            //将请求发送给accountAction中的query方法处理，这里需要将处理好的数据返回到这边来显示了 ，所以后台需要将数据打包成json格式发过来
-            url:'../admin/blogType/listBlogType.do',
-            valueField:'blogType.id',
-            textField:'blogType.typeName',
-            panelHeight:'auto', //自适应高度
-            panelWidth:120,//下拉列表是两个组件组成的
-            width:120, //要同时设置两个宽度才行
-            editable:false //下拉框不允许编辑
-        })
-
-        // 完成数据的回显，更新时，用户肯定先选择了要更新的那一行，首先我们得拿到那一行
-        var rows = dg.datagrid("getSelections");
-        //将拿到的那一行对应的数据字段加载到表单里，实现回显
-        $("#fm").form('load',{
-            title:rows[0].title,
-            content:rows[0].content,
-            keyword:rows[0].keyword,
-            typeName:rows[0].typeName
-        });
-    </script>
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
         var ue = UE.getEditor('editor');
@@ -51,7 +28,7 @@
                             result = eval("(" + result.responseText + ")");
                             $("#title").val(result.title);
                             $("#keyword").val(result.keyword);
-                            $("#blogTypeId").combobox("setValue", result.blogType.id);
+                            $("#blogTypeId").combobox("setValue", result.blogType.typeName);
                             UE.getEditor('editor').setContent(result.content);
                         }
                     });
@@ -119,7 +96,12 @@
                 <div>
                     <label>
                         所属类别&nbsp;:
-                        <input id="cc" name="blogType.id">
+                        <select id="blogTypeId" name="blogType.id" style="width:154px" editable="false"
+                                panelHeight="auto">
+                            <c:forEach items="${blogTypeList }" var="blogType">
+                                <option value="${blogType.id }">${blogType.typeName }</option>
+                            </c:forEach>
+                        </select>
                     </label>
                 </div><br>
                 <div>
